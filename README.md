@@ -52,64 +52,17 @@ teacher = softmax(z_proxy)
 - 🔌 **Drop-in on [verl](https://github.com/volcengine/verl)**: FSDP + vLLM rollout, single/multi-node;
   only the teacher's per-position top-K distribution is exported to the student.
 
-## 🖥️ Installation
-
-```bash
-git clone https://github.com/Yu-Fangxu/W2S-OPD.git && cd W2S-OPD
-conda create -n w2s-opd python=3.10 -y && conda activate w2s-opd
-pip install -e verl
-pip install -r verl/requirements-cuda.txt
-pip install math_verify evalplus
-```
-
 ## 📥 Data & Models
 
-Training data (verl parquet with `prompt`, `reward_model.ground_truth`, `extra_info`):
-- **Math**: DeepMath-103K → `data/DeepMath-103K/train.parquet`
-- **Code**: Eurus / TACO → `data/Eurus/code_train.parquet`
-
-Models are loaded from Hugging Face — set the paths inside each `scripts/setting*.sh`. The student is
-`Qwen3-8B`; the positive / negative come from the Qwen3 family (`Qwen3-4B-Base`, post-RL 4B experts,
-`Qwen3-1.7B`, `Qwen3-0.6B`).
+> 🚧 **Data and model setup instructions are under internal review and will be released here once the review is complete.**
 
 ## 🎯 Training
 
-Each contrast is one script (edit the model paths at the top, then run):
-
-| Setting | Positive `z₊` | Negative `z₋` | Isolates |
-|---|---|---|---|
-| `scripts/setting1_rl_skill_delta.sh` | post-RL expert | its pre-RL initialization | the skill RL instills |
-| `scripts/setting2_capacity_delta.sh` | larger base model | smaller base model | capability from scale |
-| `scripts/setting3_context_delta.sh`  | base + correct hint | base + incorrect hint | instance-level direction to the solution |
-
-```bash
-bash scripts/setting1_rl_skill_delta.sh
-```
-
-Common knobs (env → `verl/examples/g_opd/run_topk_opd_8b.sh`):
-`PROXY_ALPHA` (contrast strength α) · `TOPK` (per-position top-K exported to the student) ·
-`MODE=reverse` · `STEPS` · `NGPU` · `CONTEXT_DELTA={answer_only|solution_answer|trace}` (setting 3).
-
-The proxy-teacher additions on top of verl:
-- `verl/verl/workers/actor/proxy_teacher.py` — composes `z_base + α(z₊ − z₋)`, exports the top-K teacher.
-- `verl/verl/workers/actor/dp_actor.py` — the student's per-position reverse-KL objective.
-- `verl/verl/trainer/ppo/ref_input_utils.py` — builds the ± hint contexts (setting 3).
+> 🚧 **The training code is under internal review and will be released here once the review is complete.**
 
 ## 📊 Evaluation
 
-```bash
-# Math (avg@32): AIME24/25, HMMT-Feb/Nov
-python evaluation/math_eval/eval_math.py --input_file data/aime24/test.jsonl \
-    --model_path <merged_hf_ckpt> --output_file out.jsonl --n 32 --temperature 1.0 --max_tokens 30720
-
-# Code: HumanEval+/MBPP+ (evaluation/evalplus) and LiveCodeBench (evaluation/LiveCodeBench)
-```
-
-Merge an FSDP checkpoint to Hugging Face format first:
-```bash
-python verl/scripts/legacy_model_merger.py merge --backend fsdp \
-    --local_dir <ckpt>/actor --target_dir <hf_dir> --hf_model_path <base_model>
-```
+> 🚧 **The evaluation code is under internal review and will be released here once the review is complete.**
 
 ## 📖 Citation
 

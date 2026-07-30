@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  📄 <a href="https://w2s-opd.github.io"><strong>Paper</strong></a> |
+  📄 <a href="https://arxiv.org/abs/2607.26246"><strong>Paper</strong></a> |
   🌐 <a href="https://w2s-opd.github.io"><strong>Project Page</strong></a>
 </p>
 
@@ -69,10 +69,13 @@ teacher = softmax(z_proxy)
 If you find this work useful, please cite:
 
 ```bibtex
-@inproceedings{yu2026w2sopd,
-  title     = {Weak-to-Strong On-Policy Distillation},
-  author    = {Yu, Fangxu and Lin, Zinan and Liu, Xiaodong and Xu, Weijia and Xu, Michael and Zhou, Tianyi and Gao, Jianfeng},
-  booktitle = {International Conference on Learning Representations (ICLR)},
-  year      = {2026}
+@misc{yu2026weaktostrongonpolicydistillation,
+      title={Weak-to-Strong On-Policy Distillation}, 
+      author={Fangxu Yu and Zinan Lin and Xiaodong Liu and Weijia Xu and Michael Xu and Tianyi Zhou and Jianfeng Gao},
+      year={2026},
+      eprint={2607.26246},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2607.26246}, 
 }
 ```

@@ -66,16 +66,13 @@ teacher = softmax(z_proxy)
 
 ## 📖 Citation
 
-If you find this work useful, please cite:
+If you find this work useful, please consider cite:
 
 ```bibtex
-@misc{yu2026weaktostrongonpolicydistillation,
-      title={Weak-to-Strong On-Policy Distillation}, 
-      author={Fangxu Yu and Zinan Lin and Xiaodong Liu and Weijia Xu and Michael Xu and Tianyi Zhou and Jianfeng Gao},
-      year={2026},
-      eprint={2607.26246},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2607.26246}, 
+@article{yu2026weak,
+  title={Weak-to-Strong On-Policy Distillation},
+  author={Yu, Fangxu and Lin, Zinan and Liu, Xiaodong and Xu, Weijia and Xu, Michael and Zhou, Tianyi and Gao, Jianfeng},
+  journal={arXiv preprint arXiv:2607.26246},
+  year={2026}
 }
 ```
